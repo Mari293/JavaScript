@@ -1,0 +1,19 @@
+body{background-color: cadetblue; display: flex; justify-content: center;align-items: center; height: 55em; font-family: sans-serif;}
+#container{background-color: #fff;display: flex; flex-direction: column; align-items: center; width: 40%; height: 25em; justify-content: space-evenly; border-radius: 5%;}
+#name, #date {height: 2.5em; text-align: center; width: 50%; font-size: 100%;}
+#date{font-size:larger;}
+#calculate{height: 3em; width: 20%; font-weight: bold; background-color:lightgrey; border: 0;}
+#message{font-size: 105%;}
+
+
+@media screen and (max-width: 576px){
+    #container{width:60%;}
+    #name, #date{width: 55%;}
+    #message{font-size: 110%;}
+    #calculate{width: 30%; font-size: 100%;}
+}
+
+@media screen and (max-width:472px){
+    #container{width:70%;}
+}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Tweets</title>
+</head>
+<body>
+    <header>
+        <div id="container-title">
+            <h3><i>Bienvenido</i></h3>
+            <div id="keyLetter">
+                <p id="letter"></p>
+            </div>
+        </div>
+    <p>Deja tu comentario</p>
+    </header>
+    <main>
+        <div id="container-info">
+            <h4>Bienvenido</h4>
+            <div id="container-nameUser">
+                <img src="images/user.png" height=15 alt="Logo de usuario"/>
+                <input type="text" placeholder="Usuario" id="name">
+            </div>
+            <textarea maxlength="200" cols="37" rows="10" placeholder="Máximo 200 carácteres" id="captureMessage"></textarea>
+            <div id="container-characters">
+                <p id="characters">200</p>
+            </div>
+            <div id="container-message">
+                <p id="message"></p>
+            </div>
+            <button type="submit" id="send">Send</button>
+        </div>
+        
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
