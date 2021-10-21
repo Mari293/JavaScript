@@ -38,22 +38,3 @@ btn_Generate.style.height= "70px";
 btn_Generate.style.backgroundColor = "#90e0ef";
 btn_Generate.style.border = "4px solid #90e0ef";
 btn_Generate.style.fontSize = "85%";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
