@@ -49,13 +49,6 @@ function closeModalcontainer(event){
     modalContainer.style.opacity = "0";
     modalContainer.style.visibility = "hidden";
   },900);}
-  else if (event.target==shoppingCartContainer){
-    shoppingCart.classList.toggle("shoppingCart-close")
-    modal.classList.toggle("modal-close");
-    setTimeout(function(){
-    shoppingCartContainer.style.opacity = "0";
-    shoppingCartContainer.style.visibility = "hidden";
-  },900);}
 }
 
 function addProducts(){
@@ -86,8 +79,8 @@ function create_Cards() {
     img_card.setAttribute('id', 'img');
     description_card.classList.add('description_card');
     btn_card.classList.add('btn_card');
-    // btn_card.setAttribute('id', product.id); 
-    // btn_card.addEventListener('click', addCart)
+    btn_card.setAttribute('id', product.id); 
+    btn_card.addEventListener('click', addCart)
     
     title_card.textContent = product.name;
     price_card.textContent = `$${price_product(product.price)} `;
@@ -111,4 +104,55 @@ function price_product(price) {
   let decimal = price.toString().split(".");
   decimal[0] = decimal[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return decimal.join(".");
+}
+
+function addCart(event){
+  cart_products.push(event.target.getAttribute('id'));
+  showCart();
+}
+
+function showCart(){
+  cart.innerHTML = '';
+  let index = [...new Set(cart_products)];
+  index.forEach(product =>{
+    const productAttribute = products.filter(element =>{
+      return parseInt(product)===element.id;
+    })
+
+    let counter = 0;
+    for(i of cart_products){
+      if (i === product){
+        counter+=1;
+      }
+    }
+
+    const productContainer = document.createElement('div');
+    const nameProduct = document.createElement('p');
+    const priceProduct = document.createElement('p');
+    const imgProduct = document.createElement('img');
+    const countProduct = document.createElement('p')
+    const imgAdd = document.createElement('img');
+    const imgSubtract = document.createElement('img');
+
+    productContainer.classList.add('product-container');
+    nameProduct.classList.add('name-product');
+    imgProduct.classList.add('imgProduct');
+    imgAdd.classList.add('icons');
+    imgSubtract.classList.add('icons');
+
+    nameProduct.textContent = productAttribute[0].name;
+    priceProduct.textContent = `Price: $${price_product(productAttribute[0].price)}`;
+    imgProduct.src = productAttribute[0].img;
+    imgAdd.src = 'images/add.png';
+    imgSubtract.src = 'images/subtract.png';
+    countProduct.textContent = `Cantidad:${counter}`;
+
+    productContainer.appendChild(nameProduct);
+    productContainer.appendChild(priceProduct);
+    productContainer.appendChild(imgProduct);
+    productContainer.appendChild(imgAdd);
+    productContainer.appendChild(imgSubtract);
+    productContainer.appendChild(countProduct);
+    cart.appendChild(productContainer);
+  })
 }
