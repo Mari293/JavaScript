@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Market Place</title>
+</head>
+<body>
+  <header class="header-card">
+    <h1>Clothing Store</h1>
+    <a href="#" class="new-product">Add a new product</a>
+    <a href="#" class="new-product"><img id="shoppingCart" src="images/carritoCompras.png" alt="Icono de carrito de compras" width="45"></a>
+  </header>
+  <main id="principal-container">   
+  </main>
+  <div class="modal-container">
+    <div class="modal modal-close">
+      <p class="close">X</p>
+      <img src="images/addProduct.svg" alt="Add to card">
+      <div class="modal-text">
+        <h2>New Product</h2>
+        <input type="text" placeholder="Name" id="name_product">
+        <input type="text" placeholder="Price" id="price_product">
+        <textarea id="description_product" cols="29.5" rows="5" placeholder="Description"></textarea>
+        <button class="btn_card addProduct" type="submit">Add Product</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="top-footer">
+      <div class="top-footer-socialMedia">
+        <a href="#"><img src="images/facebook.png" alt="Logo de facebook" ></a>
+        <a href="#"><img src="images/instagram.png" alt="Logo de instagram"></a>
+        <a href="#"><img src="images/twitter.png" alt="Logo de twitter"></a>
+      </div>
+      <p><b>clothingstore789@gmail.com</b></p>
+    </div>
+    <div class="down-footer">
+      <p>&copy; CLOTHING STORE | Diseño Web: Mariana Cruz | Todos los derechos reservados</p>
+    </div>
+  </footer> 
+  <script src="scripts/products.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
