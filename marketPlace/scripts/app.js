@@ -1,6 +1,7 @@
-const main = document.querySelector('#principal-container');
+const main = document.querySelector('#principal-container')
 const btn_cart = document.querySelector('.btn-cart');
 const cart = document.querySelector('.cart');
+const productsCart = document.querySelector('.productsCart') 
 
 const closeModal = document.querySelector('.close');
 const openModal = document.querySelector('.new-product');
@@ -17,7 +18,6 @@ cart_products= [];
 openModal.addEventListener('click', seeModal);
 closeModal.addEventListener('click', hiddenModal);
 window.addEventListener('click', closeModalcontainer);
-//addProduct.addEventListener('click', addProducts);
 btn_cart.addEventListener('click', seeCart)
 
 create_Cards()
@@ -113,7 +113,7 @@ function addCart(event){
 
 
 function showCart(){
-  cart.innerHTML = ' ';
+  productsCart.innerHTML = ' ';
   let index = new Set(cart_products);
   index.forEach(product =>{
     const productAttribute = products.filter(element =>{
@@ -131,20 +131,26 @@ function showCart(){
     const nameProduct = document.createElement('p');
     const priceProduct = document.createElement('p');
     const imgProduct = document.createElement('img');
+    const informationContainer = document.createElement('div');
+    const infoImgContainer = document.createElement('div');
+    const countContainer = document.createElement('div');
     const imgAdd = document.createElement('img');
     const imgSubtract = document.createElement('img');
     const imgDelete = document.createElement('img');
     const countProduct = document.createElement('p');
     
     productContainer.classList.add('product-container');
+    informationContainer.classList.add('information-container');
+    infoImgContainer.classList.add('info-img-container');
     nameProduct.classList.add('name-product');
     imgProduct.classList.add('imgProduct');
+    countContainer.classList.add('count-container')
     imgAdd.classList.add('icons');
     imgSubtract.classList.add('icons');
-    imgDelete.classList.add('icons');
+    imgDelete.classList.add('icons','trash');
     
     nameProduct.textContent = productAttribute[0].name;
-    priceProduct.textContent = `Price: $${price_product(productAttribute[0].price)}`;
+    priceProduct.textContent = `Price: $${price_product(parseInt(productAttribute[0].price) * counter)}`;
     imgProduct.src = productAttribute[0].img;    
     imgAdd.src = 'images/add.png';    
     imgSubtract.src = 'images/subtract.png';    
@@ -154,19 +160,23 @@ function showCart(){
     imgSubtract.setAttribute('id', productAttribute[0].id);
     imgDelete.setAttribute('id', productAttribute[0].id);
 
-
     imgAdd.addEventListener('click', addCart);
     imgSubtract.addEventListener('click', subtractCart);
     imgDelete.addEventListener('click', deleteProduct);
 
     productContainer.appendChild(nameProduct);
-    productContainer.appendChild(priceProduct);
-    productContainer.appendChild(imgProduct);
-    productContainer.appendChild(imgAdd);
-    productContainer.appendChild(imgSubtract);
+    productContainer.appendChild(informationContainer);
+    informationContainer.appendChild(countContainer);
+    informationContainer.appendChild(priceProduct);
+    productContainer.appendChild(infoImgContainer);
+    infoImgContainer.appendChild(imgProduct);
+    infoImgContainer.appendChild(informationContainer);
+    countContainer.appendChild(imgSubtract);
+    countContainer.appendChild(countProduct);
+    countContainer.appendChild(imgAdd);
     productContainer.appendChild(imgDelete);
-    productContainer.appendChild(countProduct);
-    cart.appendChild(productContainer);
+    productsCart.appendChild(productContainer);
+    
   })
 }
 
