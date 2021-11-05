@@ -1,4 +1,6 @@
 const main = document.querySelector('#principal-container');
+const btn_cart = document.querySelector('.btn-cart');
+const cart = document.querySelector('.cart');
 
 const closeModal = document.querySelector('.close');
 const openModal = document.querySelector('.new-product');
@@ -15,9 +17,15 @@ const cart_products= [];
 openModal.addEventListener('click', seeModal);
 closeModal.addEventListener('click', hiddenModal);
 window.addEventListener('click', closeModalcontainer);
-addProduct.addEventListener('click', addProducts);
+//addProduct.addEventListener('click', addProducts);
+btn_cart.addEventListener('click', seeCart)
 
 create_Cards()
+
+function seeCart(event){
+  event.preventDefault();
+  cart.classList.toggle('cart-container');
+}
 
 function seeModal(event){
   event.preventDefault();
@@ -78,8 +86,8 @@ function create_Cards() {
     img_card.setAttribute('id', 'img');
     description_card.classList.add('description_card');
     btn_card.classList.add('btn_card');
-    btn_card.setAttribute('id', product.id); 
-    btn_card.addEventListener('click', addCart)
+    // btn_card.setAttribute('id', product.id); 
+    // btn_card.addEventListener('click', addCart)
     
     title_card.textContent = product.name;
     price_card.textContent = `$${price_product(product.price)} `;
