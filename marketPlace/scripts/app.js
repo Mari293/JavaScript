@@ -2,6 +2,8 @@ const main = document.querySelector('#principal-container');
 const btn_cart = document.querySelector('.btn-cart');
 const cart = document.querySelector('.cart');
 const productsCart = document.querySelector('.productsCart'); 
+// const showImg = document.querySelectorAll('#show_img_product');
+const seeTotal = document.querySelector('.messageTotal');
 
 const closeModal = document.querySelector('.close');
 const openModal = document.querySelector('.new-product');
@@ -13,12 +15,13 @@ const nameProduct = document.querySelector('#name_product');
 const priceProduct = document.querySelector('#price_product');
 const descriptionProduct = document.querySelector('#description_product');
 
-cart_products= [];
+cart_products = [];
 
 openModal.addEventListener('click', seeModal);
 closeModal.addEventListener('click', hiddenModal);
 window.addEventListener('click', closeModalcontainer);
 btn_cart.addEventListener('click', seeCart);
+addProduct.addEventListener('click', addProducts)
 
 create_Cards()
 function seeCart(event){
@@ -54,9 +57,13 @@ function addProducts(){
   let id = {id: products.length + 1};
   let name = {name: nameProduct.value};
   let price = {price: priceProduct.value};
+  let img = showImg.src;
   let description = {description: descriptionProduct.value};
-  let newProduct = Object.assign(id, name, price, description);
+  let newProduct = Object.assign(id, name, price, img, description);
   products.push(newProduct);
+  create_Cards();
+  // console.log(img);
+  // console.log(products)
 }
 
 function create_Cards() {
@@ -100,13 +107,14 @@ function create_Cards() {
 
 function price_product(price) {
   let decimal = price.toString().split(".");
-  decimal[0] = decimal[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  decimal[0] = decimal[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return decimal.join(".");
 }
 
 function addCart(event){
   cart_products.push(event.target.getAttribute('id'));
   showCart();
+  calculateTotal();
 }
 
 function showCart(){
@@ -174,17 +182,38 @@ function showCart(){
     productContainer.appendChild(imgDelete);
     productsCart.appendChild(productContainer);
     
+    // calculateTotal();
+
   })
 }
 
 function subtractCart(event){
   cart_products.splice(parseInt(cart_products.indexOf(event.target.getAttribute('id'))),1);
-  showCart();
+  showCart();  
+  calculateTotal();
+
 }
 
 function deleteProduct(event){
   cart_products = cart_products.filter(item => {
     return event.target.getAttribute('id') !== item;
   });
-  showCart()
+  showCart();
+  calculateTotal();
+}
+
+function calculateTotal(){
+  let total = 0;
+  cart_products.forEach(product => {
+    let allProducts = products.filter(element=>{
+      return  parseInt(product) === element.id;
+    })
+    if (allProducts[0].id === parseInt(product)){
+      total = total + allProducts[0].price;
+    }
+    seeTotal.textContent = `SubTotal: $${price_product(total)}`
+    console.log(parseInt(product))
+    console.log(allProducts[0].id)
+    console.log(total)
+  })
 }
