@@ -2,7 +2,6 @@ const main = document.querySelector('#principal-container');
 const btn_cart = document.querySelector('.btn-cart');
 const cart = document.querySelector('.cart');
 const productsCart = document.querySelector('.productsCart'); 
-// const showImg = document.querySelectorAll('#show_img_product');
 const seeTotal = document.querySelector('.messageTotal');
 
 const closeModal = document.querySelector('.close');
@@ -21,7 +20,7 @@ openModal.addEventListener('click', seeModal);
 closeModal.addEventListener('click', hiddenModal);
 window.addEventListener('click', closeModalcontainer);
 btn_cart.addEventListener('click', seeCart);
-addProduct.addEventListener('click', addProducts)
+addProduct.addEventListener('click', addProducts);
 
 create_Cards()
 function seeCart(event){
@@ -61,9 +60,6 @@ function addProducts(){
   let description = {description: descriptionProduct.value};
   let newProduct = Object.assign(id, name, price, img, description);
   products.push(newProduct);
-  create_Cards();
-  // console.log(img);
-  // console.log(products)
 }
 
 function create_Cards() {
@@ -181,17 +177,13 @@ function showCart(){
     countContainer.appendChild(imgAdd);
     productContainer.appendChild(imgDelete);
     productsCart.appendChild(productContainer);
-    
-    // calculateTotal();
-
-  })
+  });
 }
 
 function subtractCart(event){
   cart_products.splice(parseInt(cart_products.indexOf(event.target.getAttribute('id'))),1);
   showCart();  
   calculateTotal();
-
 }
 
 function deleteProduct(event){
@@ -206,14 +198,11 @@ function calculateTotal(){
   let total = 0;
   cart_products.forEach(product => {
     let allProducts = products.filter(element=>{
-      return  parseInt(product) === element.id;
-    })
+      return parseInt(product) === element.id;
+    });
     if (allProducts[0].id === parseInt(product)){
       total = total + allProducts[0].price;
-    }
-    seeTotal.textContent = `SubTotal: $${price_product(total)}`
-    console.log(parseInt(product))
-    console.log(allProducts[0].id)
-    console.log(total)
+    };
+    seeTotal.textContent = `Total: $${price_product(total)}`;
   })
 }
